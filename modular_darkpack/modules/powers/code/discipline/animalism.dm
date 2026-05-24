@@ -38,7 +38,8 @@
 	desc = "Summon a spectral rat to do your bidding."
 	level = 1
 	violates_masquerade = TRUE
-	cooldown_length = 8 SECONDS
+	cooldown_length = 1 SECONDS
+	vitae_cost = 0
 	check_flags = DISC_CHECK_IMMOBILE | DISC_CHECK_CAPABLE | DISC_CHECK_LYING
 
 /datum/discipline_power/animalism/summon_rat/activate()
@@ -64,7 +65,8 @@
 	desc = "Summon a spectral wolf to do your bidding."
 	level = 3
 	violates_masquerade = TRUE
-	cooldown_length = 8 SECONDS
+	cooldown_length = 10 SECONDS
+	vitae_cost = 2
 	check_flags = DISC_CHECK_IMMOBILE | DISC_CHECK_CAPABLE | DISC_CHECK_LYING
 
 /datum/discipline_power/animalism/summon_wolf/activate()
@@ -77,7 +79,8 @@
 	desc = "Summon a spectral bat to do your bidding."
 	level = 4
 	violates_masquerade = TRUE
-	cooldown_length = 8 SECONDS
+	cooldown_length = 2 SECONDS
+	vitae_cost = 0.5
 	check_flags = DISC_CHECK_IMMOBILE | DISC_CHECK_CAPABLE | DISC_CHECK_LYING
 
 /datum/discipline_power/animalism/summon_bat/activate()
@@ -141,9 +144,9 @@
 	desc = "A rat bound to its master's will."
 	ai_controller = /datum/ai_controller/basic_controller/beastmaster_summon
 	melee_damage_lower = 3
-	melee_damage_upper = 8
+	melee_damage_upper = 8 // not combat viable at all
 	obj_damage = 10
-	bloodpool = 2
+	bloodpool = 1 // light snack!
 
 /mob/living/basic/mouse/vampire/summoned/Initialize(mapload)
 	AddElement(/datum/element/ai_retaliate)
@@ -159,7 +162,7 @@
 	melee_damage_lower = 5
 	melee_damage_upper = 12
 	obj_damage = 15
-	bloodpool = 2
+	bloodpool = 2 // mostly just so you can have pet kibby
 
 /mob/living/basic/pet/cat/darkpack/summoned/Initialize(mapload)
 	. = ..()
@@ -174,16 +177,16 @@
 	basic_mob_flags = DEL_ON_DEATH
 	mob_biotypes = MOB_ORGANIC
 	speed = 0.35
-	maxHealth = 80
-	health = 80
-	melee_damage_lower = 10
-	melee_damage_upper = 20
-	obj_damage = 20
+	maxHealth = 100 // still gets oneshot by potence. takes some prep work to become actually threatening
+	health = 100
+	melee_damage_lower = 30
+	melee_damage_upper = 35
+	obj_damage = 25
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 	attack_sound = 'modular_darkpack/modules/deprecated/sounds/dog.ogg'
 	random_wolf_color = FALSE
-	bloodpool = 2
+	bloodpool = 3
 
 /mob/living/basic/pet/dog/wolf/summoned/Initialize(mapload)
 	. = ..()
@@ -195,12 +198,13 @@
 	name = "bat"
 	desc = "A bat bound to its master's will."
 	ai_controller = /datum/ai_controller/basic_controller/beastmaster_summon
-	melee_damage_lower = 4
-	melee_damage_upper = 10
+	melee_damage_lower = 16
+	melee_damage_upper = 24
+	melee_damage_type = AGGRAVATED // actually REALLY scary. iirc they used to drain your bloodpoints
 	obj_damage = 10
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
-	bloodpool = 2
+	bloodpool = 1 // not for drinking
 
 /mob/living/basic/bat/summoned/Initialize(mapload)
 	. = ..()
